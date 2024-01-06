@@ -50,8 +50,29 @@ const createThought = async (req, res) => {
   }
 };
 
+// Update a thought
+const updateThought = async (req, res) => {
+  try {
+    const thought = await Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      req.body,
+      { new: true }
+    );
+
+    if (!thought) {
+      res.status(404).json({ message: 'No thought exists with that ID!' });
+      return;
+    }
+
+    res.json(thought);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
 module.exports = {
   getAllThoughts,
   getSingleThought,
-  createThought
-}
+  createThought,
+  updateThought
+};
