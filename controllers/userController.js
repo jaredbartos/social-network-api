@@ -1,5 +1,7 @@
 const { User, Thought } = require('../models');
 
+// Controller functions to use for user routes
+// Get all users
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -11,12 +13,14 @@ const getAllUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
   try {
+    // Get single user from request parameter and populate references
     const user = await User.findOne({ _id: req.params.userId })
-      .populate( { path: 'thoughts', populate: { path: 'reactions' }})
+      .populate('thoughts')
       .populate('friends');
 
     if (!user) {
-      res.status(404).json({ message: 'No user exits with that ID!' })
+      res.status(404).json({ message: 'No user exits with that ID!' });
+      return;
     }
 
     res.json(user);
@@ -25,6 +29,7 @@ const getSingleUser = async (req, res) => {
   }
 }
 
+// Create a user
 const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
@@ -34,6 +39,7 @@ const createUser = async (req, res) => {
   }
 };
 
+// Update a user
 const updateUser = async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(
@@ -48,9 +54,28 @@ const updateUser = async (req, res) => {
   }
 };
 
+// Delete a user and any associated thoughts
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findOneAndDelete({ _id: req.params.userId });
+
+    if (!user) {
+      res.status(404).json({ message: 'No user exists with that ID!' });
+      return;
+    }
+
+    await Thought.deleteMany({ _id: { $in: user.thoughts } })
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
 module.exports = {
   getAllUsers,
   getSingleUser,
   createUser,
-  updateUser
+  updateUser,
+  deleteUser
 };
