@@ -25,4 +25,17 @@ const getSingleUser = async (req, res) => {
   }
 }
 
-module.exports = { getAllUsers, getSingleUser };
+const createUser = async (req, res) => {
+  try {
+    const user = await User.create(req.body);
+    res.json(user);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  getSingleUser,
+  createUser
+};
