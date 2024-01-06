@@ -3,6 +3,7 @@ const db = require('../config/connection');
 const userSeedData = require('./userSeedData.json');
 const thoughtSeedData = require('./thoughtSeedData.json');
 
+// Function to seed users
 const seedUsers = async (data) => {
   const users = await User.find({});
 
@@ -14,6 +15,7 @@ const seedUsers = async (data) => {
   console.log(userResults);
 };
 
+// Function to seed thoughts
 const seedThoughts = async (data) => {
   const thoughts = await Thought.find({});
 
@@ -25,6 +27,7 @@ const seedThoughts = async (data) => {
   console.log(thoughtResults);
 };
 
+// Function to update users with their thoughts
 const updateUsers = async (thought) => {
   const thoughtId = thought._id;
   const thoughtUsername = thought.username;
@@ -38,6 +41,7 @@ const updateUsers = async (thought) => {
   console.log(user);
 };
 
+// Function to take each thought and attribute it to users
 const attributeThoughts = async () => {
   const thoughts = await Thought.find({});
   
@@ -46,6 +50,7 @@ const attributeThoughts = async () => {
   }
 }
 
+// Seed collections
 db.once('open', async () => {
   await seedUsers(userSeedData);
 
