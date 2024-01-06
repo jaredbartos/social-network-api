@@ -38,7 +38,8 @@ const userSchema = new Schema(
     // Include virtuals in JSON responses
     toJSON: {
       virtuals: true
-    }
+    },
+    id: false
   }
 );
 

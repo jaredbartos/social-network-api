@@ -11,7 +11,9 @@ const getAllUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.params.userId }).populate('thoughts');
+    const user = await User.findOne({ _id: req.params.userId })
+      .populate( { path: 'thoughts', populate: { path: 'reactions' }})
+      .populate('friends');
 
     if (!user) {
       res.status(404).json({ message: 'No user exits with that ID!' })

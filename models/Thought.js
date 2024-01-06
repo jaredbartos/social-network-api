@@ -27,7 +27,8 @@ const thoughtSchema = new Schema(
     // Include getters in JSON response
     toJSON: {
       getters: true
-    }
+    },
+    id: false
   }
 );
 
