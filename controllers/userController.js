@@ -34,8 +34,23 @@ const createUser = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: req.params.userId },
+      req.body,
+      { new: true }
+    );
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 module.exports = {
   getAllUsers,
   getSingleUser,
-  createUser
+  createUser,
+  updateUser
 };
