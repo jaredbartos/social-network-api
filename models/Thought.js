@@ -24,7 +24,7 @@ const thoughtSchema = new Schema(
     reactions: [Reaction]
   },
   {
-    // Include getters in JSON response
+    // Include getters and virtuals in JSON response
     toJSON: {
       virtuals: true,
       getters: true
