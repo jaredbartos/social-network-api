@@ -26,6 +26,7 @@ const thoughtSchema = new Schema(
   {
     // Include getters in JSON response
     toJSON: {
+      virtuals: true,
       getters: true
     },
     id: false
