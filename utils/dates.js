@@ -4,7 +4,7 @@ const { DateTime } = require('luxon');
 const formatDate = (timestamp) => {
   const dt = DateTime.fromMillis(timestamp);
 
-  return dt.toLocaleString(DateTime.DATE_MED);
+  return dt.toLocaleString(DateTime.DATETIME_FULL);
 };
 
 module.exports = { formatDate };

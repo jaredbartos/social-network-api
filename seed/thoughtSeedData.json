@@ -5,6 +5,12 @@
   },
   {
     "thoughtText": "Here's a cool thought...",
-    "username": "lernantino"
+    "username": "lernantino",
+    "reactions": [
+      {
+        "reactionBody": "Cool thought, lernantino!",
+        "username": "amiko"
+      }
+    ]
   }
 ]
