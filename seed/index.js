@@ -5,7 +5,7 @@ const thoughtSeedData = require('./thoughtSeedData.json');
 
 // Function to seed users
 const seedUsers = async (data) => {
-  const users = await User.find({});
+  const users = await User.find();
 
   if (users.length) {
     await db.dropCollection('users');
@@ -17,7 +17,7 @@ const seedUsers = async (data) => {
 
 // Function to seed thoughts
 const seedThoughts = async (data) => {
-  const thoughts = await Thought.find({});
+  const thoughts = await Thought.find();
 
   if (thoughts.length) {
     await db.dropCollection('thoughts');
@@ -43,7 +43,7 @@ const updateUsers = async (thought) => {
 
 // Function to take each thought and attribute it to users
 const attributeThoughts = async () => {
-  const thoughts = await Thought.find({});
+  const thoughts = await Thought.find();
   
   for (let i = 0; i < thoughts.length; i++) {
     await updateUsers(thoughts[i]);
