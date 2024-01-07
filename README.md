@@ -56,6 +56,8 @@ jaredbartos@gmail.com
 
 ## Link to Demonstration Video
 
+[Demonstration Video](https://drive.google.com/file/d/1LiEPrdGOpZgsSYk2WYiBWAOX9vQ-8nSI/view?usp=sharing)
+
 ## Screenshots
 
 ![All Thoughts Screenshot](./assets/images/all_thoughts_screenshot.png)
