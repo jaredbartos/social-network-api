@@ -12,7 +12,6 @@ const seedUsers = async (data) => {
   }
 
   const userResults = await User.create(data);
-  console.log(userResults);
 };
 
 // Function to seed thoughts
@@ -24,7 +23,6 @@ const seedThoughts = async (data) => {
   }
 
   const thoughtResults = await Thought.create(data);
-  console.log(thoughtResults);
 };
 
 // Function to update users with their thoughts
@@ -36,9 +34,7 @@ const updateUsers = async (thought) => {
     { username: thoughtUsername },
     { $addToSet: { thoughts: thoughtId } },
     { new: true }
-  )
-
-  console.log(user);
+  );
 };
 
 // Function to take each thought and attribute it to users
@@ -57,6 +53,8 @@ db.once('open', async () => {
   await seedThoughts(thoughtSeedData);
 
   await attributeThoughts();
+
+  console.log('Database seeded!');
 
   process.exit();
 });
