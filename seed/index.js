@@ -11,7 +11,7 @@ const seedUsers = async (data) => {
     await db.dropCollection('users');
   }
 
-  const userResults = await User.create(data);
+  await User.create(data);
 };
 
 // Function to seed thoughts
@@ -22,7 +22,7 @@ const seedThoughts = async (data) => {
     await db.dropCollection('thoughts');
   }
 
-  const thoughtResults = await Thought.create(data);
+  await Thought.create(data);
 };
 
 // Function to update users with their thoughts
@@ -30,7 +30,7 @@ const updateUsers = async (thought) => {
   const thoughtId = thought._id;
   const thoughtUsername = thought.username;
 
-  const user = await User.findOneAndUpdate(
+  await User.findOneAndUpdate(
     { username: thoughtUsername },
     { $addToSet: { thoughts: thoughtId } },
     { new: true }
