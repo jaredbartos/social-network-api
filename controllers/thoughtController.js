@@ -92,10 +92,52 @@ const deleteThought = async (req, res) => {
   }
 };
 
+// Create a reaction to a thought
+const createReaction = async (req, res) => {
+  try {
+    const thought = await Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { reactions: req.body },
+      { new: true }
+    );
+
+    if (!thought) {
+      res.status(404).json({ message: 'No thought exists with that ID!' });
+      return;
+    };
+
+    res.json(thought);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+// Delete a reaction from a thought
+const deleteReaction = async (req, res) => {
+  try {
+    const thought = await Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { new: true }
+    );
+
+    if (!thought) {
+      res.status(404).json({ message: 'No thought exists with that ID!' });
+      return;
+    };
+
+    res.json({ message: 'The reaction has been deleted!' });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 module.exports = {
   getAllThoughts,
   getSingleThought,
   createThought,
   updateThought,
-  deleteThought
+  deleteThought,
+  createReaction,
+  deleteReaction
 };
