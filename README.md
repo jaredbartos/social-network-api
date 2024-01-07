@@ -60,5 +60,4 @@ jaredbartos@gmail.com
 
 ![All Thoughts Screenshot](./assets/images/all_thoughts_screenshot.png)
 ![All Users Screenshot](./assets/images/all_users_screenshot.png)
-![Create Reaction Screenshot](./assets/images/create_reaction_screenshot.png)
 ![Create User Screenshot](./assets/images/create_user_screenshot.png)
